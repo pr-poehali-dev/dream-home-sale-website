@@ -415,6 +415,142 @@ export default function Index() {
             </div>
 
             <div className={`${aboutAnim.inView ? "animate-fade-up animate-delay-200" : "opacity-0"}`}>
+              {/* ANIMATED ILLUSTRATION */}
+              <div className="mb-8 relative rounded-2xl overflow-hidden bg-[#0D0D14] border border-white/5 flex items-center justify-center" style={{ height: 320 }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A84C]/5 via-transparent to-[#C9A84C]/3" />
+                <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <style>{`
+                      .draw { stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+                      .draw-1 { animation: draw 1.5s ease forwards 0.3s; }
+                      .draw-2 { animation: draw 1.5s ease forwards 0.7s; }
+                      .draw-3 { animation: draw 1.5s ease forwards 1.0s; }
+                      .draw-4 { animation: draw 1.2s ease forwards 1.4s; }
+                      .draw-5 { animation: draw 1.2s ease forwards 1.7s; }
+                      .draw-6 { animation: draw 1s ease forwards 2.0s; }
+                      .fade-in-1 { opacity: 0; animation: fadeIn 0.6s ease forwards 1.6s; }
+                      .fade-in-2 { opacity: 0; animation: fadeIn 0.6s ease forwards 2.0s; }
+                      .fade-in-3 { opacity: 0; animation: fadeIn 0.6s ease forwards 2.4s; }
+                      .sway { animation: sway 3s ease-in-out infinite 2.5s; transform-origin: 280px 200px; }
+                      .float-up { animation: floatUp 4s ease-in-out infinite 2.8s; }
+                      .glow { animation: glow 2s ease-in-out infinite 2.5s; }
+                      @keyframes draw { to { stroke-dashoffset: 0; } }
+                      @keyframes fadeIn { to { opacity: 1; } }
+                      @keyframes sway { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(3deg); } }
+                      @keyframes floatUp { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+                      @keyframes glow { 0%,100% { opacity: 0.4; } 50% { opacity: 0.9; } }
+                    `}</style>
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#E8C97A"/>
+                      <stop offset="100%" stopColor="#C9A84C"/>
+                    </linearGradient>
+                    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#1a1a2e"/>
+                      <stop offset="100%" stopColor="#0D0D14"/>
+                    </linearGradient>
+                    <filter id="glow-filter">
+                      <feGaussianBlur stdDeviation="3" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  {/* Sky background */}
+                  <rect width="480" height="280" fill="url(#skyGrad)" opacity="0.5"/>
+
+                  {/* Ground line */}
+                  <line x1="20" y1="230" x2="460" y2="230" stroke="#C9A84C" strokeWidth="1" strokeOpacity="0.3" className="draw draw-1"/>
+
+                  {/* SUN / MOON glow */}
+                  <circle cx="400" cy="60" r="28" fill="none" stroke="#C9A84C" strokeWidth="0.8" strokeOpacity="0.2" className="glow"/>
+                  <circle cx="400" cy="60" r="18" fill="#C9A84C" fillOpacity="0.08" className="glow"/>
+                  <circle cx="400" cy="60" r="10" fill="#E8C97A" fillOpacity="0.15" className="glow"/>
+                  {/* Sun rays */}
+                  {[0,45,90,135,180,225,270,315].map((angle, i) => {
+                    const rad = (angle * Math.PI) / 180;
+                    return <line key={i} x1={400 + Math.cos(rad)*14} y1={60 + Math.sin(rad)*14} x2={400 + Math.cos(rad)*24} y2={60 + Math.sin(rad)*24} stroke="#C9A84C" strokeWidth="0.8" strokeOpacity="0.3" className="glow"/>;
+                  })}
+
+                  {/* HOUSE */}
+                  {/* Foundation */}
+                  <rect x="130" y="175" width="170" height="55" rx="2" fill="none" stroke="url(#goldGrad)" strokeWidth="1.5" className="draw draw-1"/>
+                  {/* Roof */}
+                  <polyline points="120,175 215,110 310,175" fill="none" stroke="url(#goldGrad)" strokeWidth="1.8" strokeLinejoin="round" className="draw draw-2"/>
+                  {/* Roof ridge */}
+                  <line x1="215" y1="110" x2="215" y2="120" stroke="#C9A84C" strokeWidth="1" strokeOpacity="0.5" className="draw draw-2"/>
+                  {/* Door */}
+                  <rect x="196" y="200" width="38" height="30" rx="2" fill="none" stroke="#C9A84C" strokeWidth="1.2" className="draw draw-3"/>
+                  <circle cx="229" cy="215" r="2" fill="#C9A84C" className="fade-in-1"/>
+                  {/* Windows */}
+                  <rect x="145" y="188" width="28" height="20" rx="2" fill="none" stroke="#C9A84C" strokeWidth="1.2" className="draw draw-3"/>
+                  <line x1="159" y1="188" x2="159" y2="208" stroke="#C9A84C" strokeWidth="0.8" strokeOpacity="0.5" className="draw draw-3"/>
+                  <line x1="145" y1="198" x2="173" y2="198" stroke="#C9A84C" strokeWidth="0.8" strokeOpacity="0.5" className="draw draw-3"/>
+                  <rect x="257" y="188" width="28" height="20" rx="2" fill="none" stroke="#C9A84C" strokeWidth="1.2" className="draw draw-3"/>
+                  <line x1="271" y1="188" x2="271" y2="208" stroke="#C9A84C" strokeWidth="0.8" strokeOpacity="0.5" className="draw draw-3"/>
+                  <line x1="257" y1="198" x2="285" y2="198" stroke="#C9A84C" strokeWidth="0.8" strokeOpacity="0.5" className="draw draw-3"/>
+                  {/* Window glow */}
+                  <rect x="145" y="188" width="28" height="20" rx="2" fill="#C9A84C" fillOpacity="0.06" className="fade-in-2"/>
+                  <rect x="257" y="188" width="28" height="20" rx="2" fill="#C9A84C" fillOpacity="0.06" className="fade-in-2"/>
+                  {/* Chimney */}
+                  <rect x="250" y="120" width="14" height="28" rx="1" fill="none" stroke="#C9A84C" strokeWidth="1.2" className="draw draw-2"/>
+                  {/* Smoke */}
+                  <path d="M257 120 Q260 112 254 105 Q248 98 252 90" fill="none" stroke="#C9A84C" strokeWidth="1" strokeOpacity="0.3" strokeDasharray="3 3" className="fade-in-3"/>
+
+                  {/* TREE */}
+                  {/* Trunk */}
+                  <rect x="342" y="198" width="8" height="32" rx="2" fill="none" stroke="#C9A84C" strokeWidth="1.5" className="draw draw-4 sway"/>
+                  {/* Branches layer 1 */}
+                  <ellipse cx="346" cy="188" rx="22" ry="20" fill="none" stroke="#C9A84C" strokeWidth="1.4" className="draw draw-4 sway"/>
+                  {/* Branches layer 2 */}
+                  <ellipse cx="346" cy="172" rx="16" ry="15" fill="#C9A84C" fillOpacity="0.04" stroke="#C9A84C" strokeWidth="1.2" className="draw draw-4 sway"/>
+                  {/* Branches layer 3 */}
+                  <ellipse cx="346" cy="158" rx="10" ry="10" fill="#C9A84C" fillOpacity="0.06" stroke="#C9A84C" strokeWidth="1" className="draw draw-5 sway"/>
+
+                  {/* MAN (father) */}
+                  {/* Body */}
+                  <line x1="80" y1="175" x2="80" y2="215" stroke="url(#goldGrad)" strokeWidth="2" className="draw draw-4 float-up"/>
+                  {/* Head */}
+                  <circle cx="80" cy="168" r="10" fill="none" stroke="url(#goldGrad)" strokeWidth="1.8" className="draw draw-4 float-up"/>
+                  {/* Arms - left raised (proud pose) */}
+                  <line x1="80" y1="185" x2="58" y2="170" stroke="#C9A84C" strokeWidth="1.6" className="draw draw-5 float-up"/>
+                  {/* Arms - right pointing at house */}
+                  <line x1="80" y1="185" x2="108" y2="190" stroke="#C9A84C" strokeWidth="1.6" className="draw draw-5 float-up"/>
+                  {/* Legs */}
+                  <line x1="80" y1="215" x2="68" y2="230" stroke="#C9A84C" strokeWidth="1.6" className="draw draw-5 float-up"/>
+                  <line x1="80" y1="215" x2="92" y2="230" stroke="#C9A84C" strokeWidth="1.6" className="draw draw-5 float-up"/>
+
+                  {/* SON (smaller figure beside father) */}
+                  {/* Body */}
+                  <line x1="100" y1="200" x2="100" y2="225" stroke="#E8C97A" strokeWidth="1.5" className="draw draw-5 float-up"/>
+                  {/* Head */}
+                  <circle cx="100" cy="194" r="7" fill="none" stroke="#E8C97A" strokeWidth="1.5" className="draw draw-5 float-up"/>
+                  {/* Arms */}
+                  <line x1="100" y1="208" x2="86" y2="215" stroke="#E8C97A" strokeWidth="1.2" className="draw draw-6 float-up"/>
+                  <line x1="100" y1="208" x2="114" y2="212" stroke="#E8C97A" strokeWidth="1.2" className="draw draw-6 float-up"/>
+                  {/* Legs */}
+                  <line x1="100" y1="225" x2="93" y2="230" stroke="#E8C97A" strokeWidth="1.2" className="draw draw-6 float-up"/>
+                  <line x1="100" y1="225" x2="107" y2="230" stroke="#E8C97A" strokeWidth="1.2" className="draw draw-6 float-up"/>
+
+                  {/* Connecting hand (father holding son) */}
+                  <line x1="92" y1="216" x2="86" y2="215" stroke="#C9A84C" strokeWidth="1.2" strokeOpacity="0.6" className="draw draw-6"/>
+
+                  {/* Stars / sparkles */}
+                  {[[380,100,3],[420,140,2],[360,130,2],[440,90,2.5]].map(([cx,cy,r],i) => (
+                    <circle key={i} cx={cx} cy={cy} r={r} fill="#C9A84C" fillOpacity="0.4" className="glow"/>
+                  ))}
+
+                  {/* Path to house */}
+                  <path d="M110 230 Q160 225 200 230" fill="none" stroke="#C9A84C" strokeWidth="1" strokeOpacity="0.3" strokeDasharray="4 4" className="fade-in-2"/>
+
+                  {/* Label text */}
+                  <text x="240" y="264" textAnchor="middle" fill="#C9A84C" fillOpacity="0.35" fontSize="9" fontFamily="Cormorant Garamond, serif" letterSpacing="3">ПОСТРОИТЬ · ПОСАДИТЬ · ВОСПИТАТЬ</text>
+                </svg>
+
+                {/* Floating label */}
+                <div className="absolute top-4 left-4 glass-gold rounded-lg px-3 py-1.5">
+                  <span className="text-[#C9A84C] text-xs tracking-widest">Три главных дела</span>
+                </div>
+              </div>
+
               <h3 className="font-display text-2xl font-light mb-6 text-[#EDE8DC]/80">Команда руководителей</h3>
               <div className="grid grid-cols-2 gap-4 mb-6">
                 {TEAM.map((member) => (
